@@ -13,13 +13,12 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
-import { LoginComponent } from './routes/user/login/login.component';
-import { RoutesModule } from './routes/routes.module';
+import { BasiclayoutComponent } from '@app/layouts/basiclayout/basiclayout.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent],
+    declarations: [AppComponent, BasiclayoutComponent],
     imports: [
         BrowserModule,
         FormsModule,
@@ -28,8 +27,7 @@ registerLocaleData(zh);
         /** 导入 ng-zorro-antd 模块 **/
         NgZorroAntdModule,
         // 路由
-        AppRoutingModule,
-        RoutesModule
+        AppRoutingModule
     ],
     /** 配置 ng-zorro-antd 国际化 **/
     providers: [{ provide: NZ_I18N, useValue: zh_CN }],
