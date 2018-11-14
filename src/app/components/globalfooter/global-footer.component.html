@@ -1,0 +1,27 @@
+<div class="globalFooter">
+    <div class="links" *ngIf="links">
+        <a
+            *ngFor="let link of links"
+            [target]="link.blankTarget ? '_blank' : '_self'"
+            [href]="link.href"
+        >
+            <ng-container *ngIf="link.title != 'github'; else: elseTemplate">
+                <span>{{ link.title }}</span>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <span><i nz-icon [type]="link.title" theme="outline"></i></span>
+            </ng-template>
+        </a>
+    </div>
+    <ng-container *ngIf="copyright; else: copyrightTemplate">
+        <div class="copyright">
+            <ng-template [ngTemplateOutlet]="copyright"></ng-template>
+        </div>
+    </ng-container>
+    <ng-template #copyrightTemplate>
+        <div class="copyright">
+            Copyright <i nz-icon type="copyright" theme="outline"></i> 2018
+            蚂蚁金服体验技术部出品
+        </div>
+    </ng-template>
+</div>

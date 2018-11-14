@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BasiclayoutComponent } from './basiclayout.component';
+import { GlobalHeaderComponent } from './global-header.component';
 
-describe('BasiclayoutComponent', () => {
-    let component: BasiclayoutComponent;
-    let fixture: ComponentFixture<BasiclayoutComponent>;
+describe('GlobalHeaderComponent', () => {
+    let component: GlobalHeaderComponent;
+    let fixture: ComponentFixture<GlobalHeaderComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [BasiclayoutComponent]
+            declarations: [GlobalHeaderComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(BasiclayoutComponent);
+        fixture = TestBed.createComponent(GlobalHeaderComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

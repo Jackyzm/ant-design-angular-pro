@@ -1,0 +1,74 @@
+<div class="header">
+    <i
+        nz-icon
+        class="trigger"
+        [type]="collapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="toggle()"
+    ></i>
+    <div class="right">
+        <app-header-search
+            class="action search"
+            placeholder="站内搜索"
+            [dataSource]="dataSource"
+            (search)="onSearch($event)"
+        ></app-header-search>
+        <span
+            nz-tooltip
+            nzTitle="使用文档"
+            nzPlacement="bottom"
+            style="padding: 0 12px;"
+        >
+            <a
+                target="_blank"
+                href="http://ng.ant.design/docs/introduce/zh"
+                rel="noopener noreferrer"
+                class="action"
+            >
+                <i nz-icon type="question-circle-o"></i>
+            </a>
+        </span>
+        <app-notice-icon></app-notice-icon>
+        <!--
+            <NoticeIcon
+                className="action"
+                :count="currentUser.notifyCount"
+                :onItemClick="(item, tabProps) => onItemClick(item, tabProps)"
+                :onClear="onNoticeClear"
+                :onPopupVisibleChange="onNoticeVisibleChange"
+                :loading="fetchingNotices"
+                :popupAlign="{ offset: [20, -16] }"
+                :notices="notices"
+            />
+        -->
+        <ng-container *ngIf="currentUser.name; else: spinTemplate">
+            <nz-dropdown nzPlacement="bottomRight">
+                <span nz-dropdown class="action account">
+                    <nz-avatar
+                        [nzSize]="'small'"
+                        class="avatar"
+                        [nzSrc]="currentUser.avatar"
+                    ></nz-avatar>
+                    <span class="name">{{ currentUser.name }}</span>
+                </span>
+                <ul nz-menu class="menu" (nzClick)="onMenuClick($event)">
+                    <li nz-menu-item nzDisabled style="width: 160px;">
+                        <i nz-icon type="user"></i>个人中心
+                    </li>
+                    <li nz-menu-item nzDisabled>
+                        <i nz-icon type="setting"></i>设置
+                    </li>
+                    <li nz-menu-item key="triggerError">
+                        <i nz-icon type="close-circle"></i>触发报错
+                    </li>
+                    <li nz-menu-divider></li>
+                    <li nz-menu-item key="logout">
+                        <i nz-icon type="logout"></i>退出登录
+                    </li>
+                </ul>
+            </nz-dropdown>
+        </ng-container>
+        <ng-template #spinTemplate>
+            <nz-spin [nzSize]="'small'" style="margin-left: 8px"></nz-spin>
+        </ng-template>
+    </div>
+</div>

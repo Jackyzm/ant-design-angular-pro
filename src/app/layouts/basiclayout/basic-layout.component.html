@@ -1,0 +1,37 @@
+<div class="BasicLayout">
+    <nz-layout class="ant-layout-has-sider">
+        <!--
+            <SiderMenu
+                :logo="logo"
+                :menuData="MenuData"
+                :collapsed="collapsed"
+                :location="$route"
+                :onCollapse="handleMenuCollapse"
+            />
+        -->
+        <nz-layout>
+            <nz-header style="background: #fff;padding: 0">
+                <app-global-header
+                    (onNoticeClear)="handleNoticeClear()"
+                    (collapse)="handleMenuCollapse($event)"
+                    [collapsed]="collapsed"
+                    [currentUser]="currentUser"
+                    (menuClick)="handleMenuClick($event)"
+                ></app-global-header>
+
+                <!--
+                    :fetchingNotices="fetchingNotices"
+                    :notices="notices"
+                    :onNoticeClear="(type)=>handleNoticeClear(type)"
+                    :onNoticeVisibleChange="(visible)=>handleNoticeVisibleChange(visible)"
+                -->
+            </nz-header>
+            <nz-content style="margin: 24px 24px 0; height: 100%">
+                <router-outlet></router-outlet>
+            </nz-content>
+            <nz-footer style="padding: 0">
+                <app-global-footer [links]="links"> </app-global-footer>
+            </nz-footer>
+        </nz-layout>
+    </nz-layout>
+</div>

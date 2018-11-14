@@ -1,0 +1,23 @@
+<span class="headerSearch" (click)="enterSearchMode()">
+    <i nz-icon type="search"></i>
+    <span [class]="'input ' + (searchMode ? 'show' : '')">
+        <input
+            [placeholder]="placeholder"
+            nz-input
+            [(ngModel)]="inputValue"
+            (input)="onInput($event.target.value)"
+            [nzAutocomplete]="auto"
+            (blur)="leaveSearchMode()"
+            #input
+        />
+        <nz-autocomplete nzBackfill #auto>
+            <nz-auto-option
+                *ngFor="let option of options"
+                [nzValue]="option"
+                (click)="onSearch(option)"
+            >
+                {{ option }}
+            </nz-auto-option>
+        </nz-autocomplete>
+    </span>
+</span>

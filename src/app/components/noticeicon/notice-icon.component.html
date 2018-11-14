@@ -1,0 +1,34 @@
+<span
+    nz-popover
+    nzPlacement="bottomRight"
+    nzTrigger="click"
+    (nzVisibleChange)="onPopupVisibleChange()"
+    nzOverlayClassName="NoticeIcon"
+    [nzContent]="nzContentTemplate"
+>
+    <span :class="className + ' noticeButton'">
+        <nz-badge :count="count" class="badge">
+            <i type="bell" class="icon"></i>
+        </nz-badge>
+    </span>
+    <ng-template #nzContentTemplate> sda </ng-template>
+    <!--
+        <template slot="content">
+            <a-spin :spinning="loading" :delay="0">
+                <a-tabs class='tabs' @change="onTabChange">
+                    <a-tab-pane v-for="item in dataList" :tab="item.list && item.list.length > 0 ? `${item.title} (${item.list.length})` : item.title" :key="item.title">
+                        <NoticeList
+                            :data="item.list"
+                            :onClick="value => onItemClick(value, item)"
+                            :onClear="() => onClear(item.title)"
+                            :title="item.title"
+                            :locale="locale"
+                            :emptyImage="item.emptyImage"
+                            :emptyText="item.emptyText"
+                        />
+                    </a-tab-pane>
+                </a-tabs>
+            </a-spin>
+        </template>
+    -->
+</span>

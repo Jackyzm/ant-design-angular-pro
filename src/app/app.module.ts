@@ -13,12 +13,23 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
-import { BasiclayoutComponent } from '@app/layouts/basiclayout/basiclayout.component';
+import { BasicLayoutComponent } from '@app/layouts/basiclayout/basic-layout.component';
+import { GlobalFooterComponent } from './components/globalfooter/global-footer.component';
+import { GlobalHeaderComponent } from './components/globalheader/global-header.component';
+import { HeaderSearchComponent } from './components/headersearch/header-search.component';
+import { NoticeIconComponent } from './components/noticeicon/notice-icon.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-    declarations: [AppComponent, BasiclayoutComponent],
+    declarations: [
+        AppComponent,
+        BasicLayoutComponent,
+        GlobalFooterComponent,
+        GlobalHeaderComponent,
+        HeaderSearchComponent,
+        NoticeIconComponent
+    ],
     imports: [
         BrowserModule,
         FormsModule,

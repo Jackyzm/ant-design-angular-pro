@@ -1,0 +1,32 @@
+@import "~ng-zorro-antd/ng-zorro-antd.less";
+
+.headerSearch {
+    .anticon-search {
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .input {
+        transition: width 0.3s, margin-left 0.3s;
+        width: 0;
+        display: inline-block;
+        .ant-select-selection {
+            background: transparent;
+        }
+        input {
+            border: 0;
+            padding: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none !important;
+            &,
+            &:hover,
+            &:focus {
+                border-bottom: 1px solid @border-color-base;
+            }
+        }
+        &.show {
+            width: 210px;
+            margin-left: 8px;
+        }
+    }
+}
