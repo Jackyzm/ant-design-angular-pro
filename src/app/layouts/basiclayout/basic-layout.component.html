@@ -12,19 +12,15 @@
         <nz-layout>
             <nz-header style="background: #fff;padding: 0">
                 <app-global-header
-                    (onNoticeClear)="handleNoticeClear()"
+                    (noticeClear)="handleNoticeClear($event)"
                     (collapse)="handleMenuCollapse($event)"
                     [collapsed]="collapsed"
                     [currentUser]="currentUser"
                     (menuClick)="handleMenuClick($event)"
+                    [notices]="notices"
+                    [fetchingNotices]="fetchingNotices"
+                    (noticeVisibleChange)="handleNoticeVisibleChange($event)"
                 ></app-global-header>
-
-                <!--
-                    :fetchingNotices="fetchingNotices"
-                    :notices="notices"
-                    :onNoticeClear="(type)=>handleNoticeClear(type)"
-                    :onNoticeVisibleChange="(visible)=>handleNoticeVisibleChange(visible)"
-                -->
             </nz-header>
             <nz-content style="margin: 24px 24px 0; height: 100%">
                 <router-outlet></router-outlet>

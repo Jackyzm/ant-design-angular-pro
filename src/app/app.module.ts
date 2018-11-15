@@ -18,6 +18,7 @@ import { GlobalFooterComponent } from './components/globalfooter/global-footer.c
 import { GlobalHeaderComponent } from './components/globalheader/global-header.component';
 import { HeaderSearchComponent } from './components/headersearch/header-search.component';
 import { NoticeIconComponent } from './components/noticeicon/notice-icon.component';
+import { NoticeListComponent } from './components/noticelist/notice-list.component';
 
 registerLocaleData(zh);
 
@@ -28,7 +29,8 @@ registerLocaleData(zh);
         GlobalFooterComponent,
         GlobalHeaderComponent,
         HeaderSearchComponent,
-        NoticeIconComponent
+        NoticeIconComponent,
+        NoticeListComponent
     ],
     imports: [
         BrowserModule,

@@ -12,12 +12,7 @@
             [dataSource]="dataSource"
             (search)="onSearch($event)"
         ></app-header-search>
-        <span
-            nz-tooltip
-            nzTitle="使用文档"
-            nzPlacement="bottom"
-            style="padding: 0 12px;"
-        >
+        <span nz-tooltip nzTitle="使用文档" nzPlacement="bottom">
             <a
                 target="_blank"
                 href="http://ng.ant.design/docs/introduce/zh"
@@ -27,17 +22,19 @@
                 <i nz-icon type="question-circle-o"></i>
             </a>
         </span>
-        <app-notice-icon></app-notice-icon>
+        <app-notice-icon
+            style="padding: 0 12px;"
+            class="action"
+            [notices]="notices"
+            [loading]="fetchingNotices"
+            [count]="currentUser.notifyCount"
+            (clear)="onNoticeClear($event)"
+            (popupVisibleChange)="onNoticeVisibleChange($event)"
+        ></app-notice-icon>
         <!--
             <NoticeIcon
-                className="action"
                 :count="currentUser.notifyCount"
                 :onItemClick="(item, tabProps) => onItemClick(item, tabProps)"
-                :onClear="onNoticeClear"
-                :onPopupVisibleChange="onNoticeVisibleChange"
-                :loading="fetchingNotices"
-                :popupAlign="{ offset: [20, -16] }"
-                :notices="notices"
             />
         -->
         <ng-container *ngIf="currentUser.name; else: spinTemplate">

@@ -8,9 +8,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class GlobalHeaderComponent implements OnInit {
     @Input() collapsed: boolean;
     @Input() currentUser: { name: string; avatar: string; notifyCount: number };
-    // tslint: disable-next-line
+    @Input() notices: Array<object>;
+    @Input() fetchingNotices: boolean;
+
     @Output() collapse: EventEmitter<any> = new EventEmitter();
     @Output() menuClick: EventEmitter<any> = new EventEmitter();
+    @Output() noticeClear: EventEmitter<any> = new EventEmitter();
+    @Output() noticeVisibleChange: EventEmitter<any> = new EventEmitter();
 
     dataSource = ['搜索提示一', '搜索提示二', '搜索提示三'];
 
@@ -34,5 +38,11 @@ export class GlobalHeaderComponent implements OnInit {
                 $event.hostElement.nativeElement.attributes.key &&
                 $event.hostElement.nativeElement.attributes.key.value
         });
+    }
+    onNoticeClear(val) {
+        this.noticeClear.emit(val);
+    }
+    onNoticeVisibleChange(val) {
+        this.noticeVisibleChange.emit(val);
     }
 }

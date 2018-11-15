@@ -28,7 +28,6 @@ export class HeaderSearchComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
-        console.log(this);
         this.options = this.dataSource;
     }
     enterSearchMode(): void {
