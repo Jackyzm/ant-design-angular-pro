@@ -1,0 +1,29 @@
+<div class="logo" key="logo">
+    <a routerLink="#/" style="float:left;">
+        <img [src]="logo" alt="logo" />
+        <h1>AntD Angular Pro</h1>
+    </a>
+</div>
+<ul
+    nz-menu
+    nzTheme="dark"
+    nzMode="inline"
+    style="padding: 16px 0; width: 100%"
+    (nzClick)="onClick($event)"
+    [nzInlineCollapsed]="collapsed"
+>
+    <!--
+        @openChange="handleOpenChange"
+        @select="selected"
+        :openKeys="openKeys"
+        :selectedKeys="selectedKeys"
+    -->
+    <app-three-menu
+        *ngFor="let item of menuData"
+        [menuData]="item"
+        (openChange)="handleOpenChange($event)"
+        [openKeys]="openKeys"
+        [selectedKey]="selectedKey"
+        [collapsed]="collapsed"
+    ></app-three-menu>
+</ul>

@@ -1,7 +1,10 @@
 <ng-container *ngIf="data && data.length > 0; else: elseTemplate">
     <nz-list class="list" [nzRenderItem]="item" [nzDataSource]="data">
         <ng-template #item let-item>
-            <nz-list-item [class]="'item ' + (item.read ? 'read' : '')">
+            <nz-list-item
+                [class]="'item ' + (item.read ? 'read' : '')"
+                (click)="onClick(item)"
+            >
                 <nz-list-item-meta
                     class="meta"
                     [nzAvatar]="item.avatar"

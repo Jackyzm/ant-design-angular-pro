@@ -19,6 +19,8 @@ import { GlobalHeaderComponent } from './components/globalheader/global-header.c
 import { HeaderSearchComponent } from './components/headersearch/header-search.component';
 import { NoticeIconComponent } from './components/noticeicon/notice-icon.component';
 import { NoticeListComponent } from './components/noticelist/notice-list.component';
+import { SiderMenuComponent } from './components/sidermenu/sider-menu.component';
+import { ThreeMenuComponent } from './components/threemenu/three-menu.component';
 
 registerLocaleData(zh);
 
@@ -30,7 +32,9 @@ registerLocaleData(zh);
         GlobalHeaderComponent,
         HeaderSearchComponent,
         NoticeIconComponent,
-        NoticeListComponent
+        NoticeListComponent,
+        SiderMenuComponent,
+        ThreeMenuComponent
     ],
     imports: [
         BrowserModule,

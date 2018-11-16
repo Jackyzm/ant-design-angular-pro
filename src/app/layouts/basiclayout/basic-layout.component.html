@@ -1,14 +1,19 @@
-<div class="BasicLayout">
-    <nz-layout class="ant-layout-has-sider">
-        <!--
-            <SiderMenu
-                :logo="logo"
-                :menuData="MenuData"
-                :collapsed="collapsed"
-                :location="$route"
-                :onCollapse="handleMenuCollapse"
-            />
-        -->
+<div class="BasicLayout" style="height:100%; min-height:100%;">
+    <nz-layout style="height:100%; min-height:100%;">
+        <nz-sider
+            nzCollapsible
+            [(nzCollapsed)]="collapsed"
+            [nzTrigger]="null"
+            [nzWidth]="256"
+            nzBreakpoint="lg"
+            (nzCollapsedChange)="handleMenuCollapse($event)"
+        >
+            <app-sider-menu
+                [logo]="logo"
+                [menuData]="MenuData"
+                [(collapsed)]="collapsed"
+            ></app-sider-menu>
+        </nz-sider>
         <nz-layout>
             <nz-header style="background: #fff;padding: 0">
                 <app-global-header

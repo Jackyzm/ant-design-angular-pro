@@ -8,7 +8,6 @@
             "@app/*": ["app/*"],
             "@components/*": ["app/components/*"],
             "@layouts/*": ["app/layouts/*"],
-            "@assets/*": ["assets/*"],
             "@utils/*": ["app/utils/*"]
         }
     },

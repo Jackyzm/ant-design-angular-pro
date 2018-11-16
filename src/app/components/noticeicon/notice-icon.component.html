@@ -13,7 +13,7 @@
     </span>
     <ng-template #nzContentTemplate>
         <nz-spin [nzSpinning]="loading" [nzDelay]="0">
-            <nz-tabset class="tabs" (nzSelectChange)="(onTabChange)">
+            <nz-tabset class="tabs" (nzSelectChange)="onTabChange()">
                 <nz-tab
                     *ngFor="let item of dataList"
                     [nzTitle]="

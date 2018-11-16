@@ -30,13 +30,8 @@
             [count]="currentUser.notifyCount"
             (clear)="onNoticeClear($event)"
             (popupVisibleChange)="onNoticeVisibleChange($event)"
+            (itemClick)="onItemClick($event)"
         ></app-notice-icon>
-        <!--
-            <NoticeIcon
-                :count="currentUser.notifyCount"
-                :onItemClick="(item, tabProps) => onItemClick(item, tabProps)"
-            />
-        -->
         <ng-container *ngIf="currentUser.name; else: spinTemplate">
             <nz-dropdown nzPlacement="bottomRight">
                 <span nz-dropdown class="action account">

@@ -20,9 +20,7 @@ export class GlobalHeaderComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
-        console.log(this);
-    }
+    ngOnInit() {}
 
     toggle() {
         this.collapse.emit({ collapsed: !this.collapsed });
@@ -44,5 +42,8 @@ export class GlobalHeaderComponent implements OnInit {
     }
     onNoticeVisibleChange(val) {
         this.noticeVisibleChange.emit(val);
+    }
+    onItemClick({ item, tabProps }) {
+        console.log(item, tabProps);
     }
 }

@@ -1,4 +1,13 @@
+import { format } from 'date-fns';
+import * as zh_cn from 'date-fns/locale/zh_cn';
+
 // import moment from 'moment';
+
+export const formatDate = (date, formatStr) => {
+    return format(date, formatStr, {
+        locale: zh_cn
+    });
+};
 
 export function fixedZero(val) {
     return val * 1 < 10 ? `0${val}` : val;

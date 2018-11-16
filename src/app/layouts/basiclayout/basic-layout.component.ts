@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
+import { getMenuData } from '../menu';
 @Component({
     selector: 'app-basic-layout',
     templateUrl: './basic-layout.component.html',
@@ -35,7 +36,7 @@ export class BasicLayoutComponent implements OnInit {
         notifyCount: 12,
         userid: '00000001'
     };
-
+    MenuData = getMenuData();
     notices = [
         {
             id: '000000001',
@@ -142,17 +143,17 @@ export class BasicLayoutComponent implements OnInit {
     ];
     constructor(private message: NzMessageService) {}
 
+    isCollapsed = false;
+    logo = './assets/logo.svg';
     ngOnInit() {}
     handleNoticeClear(type: string) {
         this.message.success(`清空了${type}`);
         // this.$store.dispatch("header/clearNotices", { type });
     }
     handleMenuCollapse({ collapsed }) {
-        console.log(collapsed);
         this.collapsed = collapsed;
     }
     handleMenuClick({ key }) {
-        console.log(key);
         if (key === 'triggerError') {
             // this.$router.push("/exception/trigger");
             return;

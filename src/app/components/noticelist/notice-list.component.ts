@@ -13,15 +13,14 @@ export class NoticeListComponent implements OnInit {
     @Input() emptyText: string;
 
     @Output() clear: EventEmitter<any> = new EventEmitter();
+    @Output() itemClick: EventEmitter<any> = new EventEmitter();
 
     // (clear)="onClear($event)"
     // (itemClick)="onItemClick($event, item)"
 
     constructor() {}
 
-    ngOnInit() {
-        console.log(this);
-    }
+    ngOnInit() {}
 
     onClear() {
         this.clear.emit();
@@ -44,5 +43,8 @@ export class NoticeListComponent implements OnInit {
                 return;
         }
         return color;
+    }
+    onClick(item) {
+        this.itemClick.emit(item);
     }
 }
