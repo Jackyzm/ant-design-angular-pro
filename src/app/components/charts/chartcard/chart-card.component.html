@@ -1,0 +1,33 @@
+<nz-card
+    [nzBodyStyle]="{ padding: '20px 24px 8px 24px' }"
+    [nzBordered]="bordered"
+>
+    <nz-spin [nzSpinning]="loading" class="spin">
+        <div class="chartCard">
+            <div class="chartTop">
+                <div *ngIf="avatar" class="avatar">{{ avatar }}</div>
+                <div class="metaWrap">
+                    <div class="meta">
+                        <span class="title">{{ title }}</span>
+                        <span class="action">
+                            <ng-template
+                                [ngTemplateOutlet]="action"
+                            ></ng-template>
+                        </span>
+                    </div>
+                    <div class="total">
+                        <ng-template [ngTemplateOutlet]="total"></ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="content" [ngStyle]="{ 'height.px': contentHeight }">
+                <div class="contentFixed">
+                    <ng-template [ngTemplateOutlet]="content"></ng-template>
+                </div>
+            </div>
+            <div class="footer">
+                <ng-template [ngTemplateOutlet]="footer"></ng-template>
+            </div>
+        </div>
+    </nz-spin>
+</nz-card>

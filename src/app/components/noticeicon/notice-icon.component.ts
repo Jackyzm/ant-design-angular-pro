@@ -34,6 +34,24 @@ export class NoticeIconComponent implements OnInit, OnChanges {
     constructor() {}
 
     ngOnInit() {
+        this.setDataList();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        // Add '${implements OnChanges}' to the class.
+        // console.log(changes);
+        if (changes.notices) {
+            this.setDataList();
+        }
+    }
+    onPopupVisibleChange(val): void {
+        this.popupVisibleChange.emit(val);
+    }
+    onTabChange(): void {
+        console.log('onTabChange');
+    }
+    setDataList() {
         this.dataList = [
             {
                 list: this.getNoticeData()['通知'],
@@ -57,18 +75,6 @@ export class NoticeIconComponent implements OnInit, OnChanges {
                     'https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg'
             }
         ];
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-        // Add '${implements OnChanges}' to the class.
-        // console.log(changes);
-    }
-    onPopupVisibleChange(val): void {
-        this.popupVisibleChange.emit(val);
-    }
-    onTabChange(): void {
-        console.log('onTabChange');
     }
     private getNoticeData() {
         if (!this.notices || this.notices.length === 0) {

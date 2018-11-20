@@ -12,12 +12,6 @@
     (nzClick)="onClick($event)"
     [nzInlineCollapsed]="collapsed"
 >
-    <!--
-        @openChange="handleOpenChange"
-        @select="selected"
-        :openKeys="openKeys"
-        :selectedKeys="selectedKeys"
-    -->
     <app-three-menu
         *ngFor="let item of menuData"
         [menuData]="item"

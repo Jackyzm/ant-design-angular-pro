@@ -33,11 +33,11 @@ export class SiderMenuComponent implements OnInit {
     }
 
     onClick(val) {
-        console.log(val);
+        // console.log(val);
     }
 
     handleOpenChange({ status, item }) {
-        console.log(status, item);
+        // console.log(status, item);
         if (status) {
             this.openKeys = item.path;
         }

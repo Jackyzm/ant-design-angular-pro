@@ -66,7 +66,8 @@
                     "options": {
                         "browserTarget": "ng-cli-app:build",
                         "host": "localhost",
-                        "port": 8000
+                        "port": 8000,
+                        "proxyConfig": "proxy.conf.json"
                     },
                     "configurations": {
                         "production": {

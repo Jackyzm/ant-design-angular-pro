@@ -4,16 +4,18 @@
         (nzOpenChange)="onOpenChange($event, menuData)"
         [nzOpen]="!openKeys.indexOf(menuData.path)"
     >
-        <span title *ngIf="!collapsed; else: subMenuTitleTemplate">
+        <span title>
             <ng-container *ngIf="menuData.icon; else: titleTemplate">
-                <i nz-icon [type]="menuData.icon"></i>
-                <span>{{ menuData.name }}</span>
+                <ng-container *ngIf="!collapsed; else: subMenuTitleTemplate">
+                    <i nz-icon [type]="menuData.icon"></i>
+                    <span>{{ menuData.name }}</span>
+                </ng-container>
+                <ng-template #subMenuTitleTemplate>
+                    <i nz-icon [type]="menuData.icon"></i>
+                </ng-template>
             </ng-container>
             <ng-template #titleTemplate> {{ menuData.name }} </ng-template>
         </span>
-        <ng-template #subMenuTitleTemplate>
-            <i nz-icon [type]="menuData.icon"></i>
-        </ng-template>
         <app-three-menu
             *ngFor="let item of menuData.children"
             (openChange)="onOpenChange($event, menuData)"
@@ -29,7 +31,7 @@
         nz-menu-item
         [nzSelected]="menuData.path === selectedKey ? true : false"
     >
-        <a [routerLink]="'#' + menuData.path">
+        <a [routerLink]="menuData.path">
             <i *ngIf="menuData.icon" nz-icon [type]="menuData.icon"></i>
             <span>{{ menuData.name }}</span>
         </a>

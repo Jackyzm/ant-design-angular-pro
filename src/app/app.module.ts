@@ -5,15 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
+
+import { SharedModule } from './routes/shared.module';
 
 /** 配置 angular i18n **/
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
-import { BasicLayoutComponent } from '@app/layouts/basiclayout/basic-layout.component';
+import { BasicLayoutComponent } from '@layouts/basiclayout/basic-layout.component';
 import { GlobalFooterComponent } from './components/globalfooter/global-footer.component';
 import { GlobalHeaderComponent } from './components/globalheader/global-header.component';
 import { HeaderSearchComponent } from './components/headersearch/header-search.component';
@@ -38,13 +38,10 @@ registerLocaleData(zh);
     ],
     imports: [
         BrowserModule,
-        FormsModule,
-        HttpClientModule,
         BrowserAnimationsModule,
-        /** 导入 ng-zorro-antd 模块 **/
-        NgZorroAntdModule,
         // 路由
-        AppRoutingModule
+        AppRoutingModule,
+        SharedModule
     ],
     /** 配置 ng-zorro-antd 国际化 **/
     providers: [{ provide: NZ_I18N, useValue: zh_CN }],

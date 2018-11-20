@@ -1,0 +1,14 @@
+<div
+    [ngStyle]="trendStyle"
+    [class]="
+        'trendItem ' +
+        (!colorful ? trendItemGrey + ' ' : ' ') +
+        (reverseColor && colorful ? reverseColor + ' ' : ' ') +
+        className
+    "
+>
+    <ng-template [ngTemplateOutlet]="number"></ng-template>
+    <span *ngIf="flag" [class]="flag">
+        <i nz-icon [type]="'caret-' + flag"></i>
+    </span>
+</div>
