@@ -1,5 +1,5 @@
-<div class="BasicLayout" style="height:100%; min-height:100%;">
-    <nz-layout style="height:100%; min-height:100%;">
+<div class="BasicLayout">
+    <nz-layout style="height:100%; min-height: 100vh;">
         <nz-sider
             nzCollapsible
             [(nzCollapsed)]="collapsed"
@@ -27,7 +27,7 @@
                     (noticeVisibleChange)="handleNoticeVisibleChange($event)"
                 ></app-global-header>
             </nz-header>
-            <nz-content style="margin: 24px 24px 0; height: 100%">
+            <nz-content style="margin: 24px 24px 0;height:100%;">
                 <router-outlet></router-outlet>
             </nz-content>
             <nz-footer style="padding: 0">

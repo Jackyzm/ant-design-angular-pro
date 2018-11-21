@@ -1,0 +1,13 @@
+<div class="chart" [ngStyle]="{ 'height.px': height }">
+    <div>
+        <h4 *ngIf="title" style="margin-bottom: 20px;">{{ title }}</h4>
+        <div
+            echarts
+            [options]="chartOption"
+            [ngStyle]="{ width: '100%', 'height.px': 254 }"
+        ></div>
+        <!--
+            <ve-histogram height="254px" :legend-visible="false" :colors="[color]" :data="chartData" :extend="chartExtend"></ve-histogram>
+        -->
+    </div>
+</div>

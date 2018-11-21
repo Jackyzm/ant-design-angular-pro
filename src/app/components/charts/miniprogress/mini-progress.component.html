@@ -1,0 +1,22 @@
+<div class="miniProgress">
+    <div
+        nz-tooltip
+        [nzTitle]="'目标值: ' + target + '%'"
+        nzPlacement="topRight"
+    >
+        <div class="target" [ngStyle]="{ 'left.%': target }">
+            <span [ngStyle]="{ 'background-color': color }"></span>
+            <span [ngStyle]="{ 'background-color': color }"></span>
+        </div>
+    </div>
+    <div class="progressWrap">
+        <div
+            class="progress"
+            [ngStyle]="{
+                'background-color': color,
+                'width.%': percent,
+                'height.px': strokeWidth
+            }"
+        ></div>
+    </div>
+</div>

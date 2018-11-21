@@ -17,8 +17,7 @@ export class SiderMenuComponent implements OnInit {
     constructor(private route: Router) {}
 
     ngOnInit() {
-        console.log(urlToList(this.route.url));
-
+        // console.log(urlToList(this.route.url));
         const pathArr = urlToList(this.route.url);
         if (pathArr[2] && !this.checkPath(pathArr[2])) {
             this.openKeys = [pathArr[0]];

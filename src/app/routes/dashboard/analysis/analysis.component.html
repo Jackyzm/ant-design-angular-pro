@@ -72,7 +72,10 @@
                     <span>{{ numeral(8846).format("0,0") }}</span>
                 </ng-template>
                 <ng-template #contentTemplateTwo>
-                    <!-- <MiniArea color="#975FE4" :data="visitData" /> -->
+                    <app-mini-area
+                        color="#975FE4"
+                        [data]="visitData"
+                    ></app-mini-area>
                 </ng-template>
                 <ng-template #footerTemplateTwo>
                     <app-field
@@ -104,7 +107,7 @@
                     <span>{{ numeral(6560).format("0,0") }}</span>
                 </ng-template>
                 <ng-template #contentTemplateThree>
-                    <!-- <MiniBar :data="visitData" /> -->
+                    <app-mini-bar [data]="visitData"></app-mini-bar>
                 </ng-template>
                 <ng-template #footerTemplateThree>
                     <app-field label="转化率" value="60%"></app-field>
@@ -131,9 +134,12 @@
             >
                 <ng-template #totalTemplateFour> <span>78%</span> </ng-template>
                 <ng-template #contentTemplateFour>
-                    <!--
-                        <MiniProgress :percent="78" strokeWidth="8px" :target="80" color="#13C2C2" />
-                    -->
+                    <app-mini-progress
+                        [percent]="78"
+                        [strokeWidth]="8"
+                        [target]="80"
+                        color="#13C2C2"
+                    ></app-mini-progress>
                 </ng-template>
                 <ng-template #footerTemplateFour>
                     <div
@@ -165,87 +171,174 @@
         </div>
     </div>
 
-    <!--
-        <a-card :loading="loading" :bordered="false" :bodyStyle="{'padding': 0}">
-            <div class="salesCard">
-                <a-tabs size="large" :tabBarStyle="{'marginBottom': 24}">
-                    <template slot="tabBarExtraContent">
-                        <div class="salesExtraWrap">
-                            <div class="salesExtra">
-                                <a :class="isActive('today')" @click="() => this.selectDate('today')">今日</a>
-                                <a :class="isActive('week')" @click="() => this.selectDate('week')">本周</a>
-                                <a :class="isActive('month')" @click="() => this.selectDate('month')">本月</a>
-                                <a :class="isActive('year')" @click="() => this.selectDate('year')">全年</a>
-                            </div>
-                            <a-range-picker :value="rangePickerValue" @change="handleRangePickerChange" style="width: 256px;" />
+    <nz-card nzBordered="false" [nzBodyStyle]="{ padding: 0 }">
+        <div class="salesCard">
+            <nz-tabset
+                size="large"
+                [nzTabBarStyle]="{ marginBottom: 24 }"
+                [nzTabBarExtraContent]="nzTabBarExtraContentTemplate"
+            >
+                <ng-template #nzTabBarExtraContentTemplate>
+                    <div class="salesExtraWrap">
+                        <div class="salesExtra">
+                            <a
+                                [class]="isActive('today')"
+                                (click)="selectDate('today')"
+                                >今日</a
+                            >
+                            <a
+                                [class]="isActive('week')"
+                                (click)="selectDate('week')"
+                                >本周</a
+                            >
+                            <a
+                                [class]="isActive('month')"
+                                (click)="selectDate('month')"
+                                >本月</a
+                            >
+                            <a
+                                [class]="isActive('year')"
+                                (click)="selectDate('year')"
+                                >全年</a
+                            >
                         </div>
-                    </template>
-                    <a-tab-pane tab="销售额" key="sales">
-                        <a-row>
-                            <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-                                <div class="salesBar">
-                                    <Bar :height="295" title="销售额趋势" :data="salesData" />
-                                </div>
-                            </a-col>
-                            <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-                                <div class="salesRank">
-                                    <h4 class="rankingTitle">门店销售额排名</h4>
-                                    <ul class="rankingList">
-                                        <li v-for="(item, i) in rankingListData" :key="item.title">
-                                            <span :class="i < 3 ? 'active' : ''">{{ i + 1 }}</span>
-                                            <span>{{ item.title }}</span>
-                                            <span>{{ numeral(item.total).format('0,0') }}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a-col>
-                        </a-row>
-                    </a-tab-pane>
-                    <a-tab-pane tab="访问量" key="views">
-                        <a-row>
-                            <a-col :xl="16" :lg="12" :md="12" :sm="24" :xs="24">
-                                <div class="salesBar">
-                                    <Bar :height="292" title="访问量趋势" :data="salesData" />
-                                </div>
-                            </a-col>
-                            <a-col :xl="8" :lg="12" :md="12" :sm="24" :xs="24">
-                                <div class="salesRank">
-                                    <h4 class="rankingTitle">门店访问量排名</h4>
-                                    <ul class="rankingList">
-                                        <li v-for="(item, i) in rankingListData" :key="item.title">
-                                            <span :class="i < 3 ? 'active' : ''">{{ i + 1 }}</span>
-                                            <span>{{ item.title }}</span>
-                                            <span>{{ numeral(item.total).format('0,0') }}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a-col>
-                        </a-row>
-                    </a-tab-pane>
-                </a-tabs>
-            </div>
-        </a-card>
-    -->
+                        <nz-range-picker
+                            [ngModel]="rangePickerValue"
+                            (ngModelChange)="handleRangePickerChange($event)"
+                            style="width: 256px;"
+                        ></nz-range-picker>
+                    </div>
+                </ng-template>
+                <nz-tab nzTitle="销售额" key="sales">
+                    <div nz-row>
+                        <div
+                            nz-col
+                            [nzXl]="16"
+                            [nzLg]="12"
+                            [nzMd]="12"
+                            [nzSm]="24"
+                            [nzXs]="24"
+                        >
+                            <div class="salesBar">
+                                <app-bar
+                                    [height]="295"
+                                    title="销售额趋势"
+                                    [data]="salesData"
+                                ></app-bar>
+                            </div>
+                        </div>
+                        <div
+                            nz-col
+                            [nzXl]="8"
+                            [nzLg]="12"
+                            [nzMd]="12"
+                            [nzSm]="24"
+                            [nzXs]="24"
+                        >
+                            <div class="salesRank">
+                                <h4 class="rankingTitle">门店销售额排名</h4>
+                                <ul class="rankingList">
+                                    <li
+                                        *ngFor="
+                                            let item of rankingListData;
+                                            let i = index
+                                        "
+                                    >
+                                        <span [class]="i < 3 ? 'active' : ''">{{
+                                            i + 1
+                                        }}</span>
+                                        <span>{{ item.title }}</span>
+                                        <span>{{
+                                            numeral(item.total).format("0,0")
+                                        }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nz-tab>
+                <nz-tab nzTitle="访问量" key="views">
+                    <div nz-row>
+                        <div
+                            nz-col
+                            [nzXl]="16"
+                            [nzLg]="12"
+                            [nzMd]="12"
+                            [nzSm]="24"
+                            [nzXs]="24"
+                        >
+                            <div class="salesBar">
+                                <app-bar
+                                    [height]="295"
+                                    title="访问量趋势"
+                                    [data]="salesData"
+                                ></app-bar>
+                            </div>
+                        </div>
+                        <div
+                            nz-col
+                            [nzXl]="8"
+                            [nzLg]="12"
+                            [nzMd]="12"
+                            [nzSm]="24"
+                            [nzXs]="24"
+                        >
+                            <div class="salesRank">
+                                <h4 class="rankingTitle">门店访问量排名</h4>
+                                <ul class="rankingList">
+                                    <li
+                                        *ngFor="
+                                            let item of rankingListData;
+                                            let i = index
+                                        "
+                                    >
+                                        <span [class]="i < 3 ? 'active' : ''">{{
+                                            i + 1
+                                        }}</span>
+                                        <span>{{ item.title }}</span>
+                                        <span>{{
+                                            numeral(item.total).format("0,0")
+                                        }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nz-tab>
+            </nz-tabset>
+        </div>
+    </nz-card>
 
-    <!--
-        <a-row :gutter="24">
-            <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-                <a-card :loading="loading" :bordered="false" title="线上热门搜索" style="margin-top: 24px;">
-                    <template slot="extra">
-                        <span className="iconGroup">
-                            <a-dropdown placement="bottomRight">
-                                <template slot="overlay">
-                                    <a-menu>
-                                        <a-menu-item>操作一</a-menu-item>
-                                        <a-menu-item>操作二</a-menu-item>
-                                    </a-menu>
-                                </template>
-                                <a-icon type="ellipsis" />
-                            </a-dropdown>
-                        </span>
-                    </template>
-                    <a-row :gutter="68">
-                        <a-col :sm="12" :xs="24" style="margin-bottom: 24px;">
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzXl]="12" [nzLg]="24" [nzMd]="24" [nzSm]="24" [nzXs]="24">
+            <nz-card
+                [nzLoading]="loading"
+                [nzBordered]="false"
+                nzTitle="线上热门搜索"
+                style="margin-top: 24px;"
+                [nzExtra]="extraTemplate"
+            >
+                <ng-template #extraTemplate>
+                    <span class="iconGroup">
+                        <nz-dropdown nzPlacement="bottomRight">
+                            <span nz-dropdown>
+                                <i nz-icon type="ellipsis"></i>
+                            </span>
+                            <ul nz-menu>
+                                <li nz-menu-item>操作一</li>
+                                <li nz-menu-item>操作二</li>
+                            </ul>
+                        </nz-dropdown>
+                    </span>
+                </ng-template>
+                <div nz-row [nzGutter]="68">
+                    <div
+                        nz-col
+                        [nzSm]="12"
+                        [nzXs]="24"
+                        style="margin-bottom: 24px;"
+                    >
+                        <!--
                             <NumberInfo :gap="8" :total="numeral(12321).format('0,0')" status="up" :subTotal="17.1">
                                 <div slot="subTitle" class="numberInfoSubTitle">
                                     <span>
@@ -256,49 +349,82 @@
                                     </span>
                                 </div>
                             </NumberInfo>
-                            <MiniArea :height="45" :data="visitData2" />
-                        </a-col>
-                        <a-col :sm="12" :xs="24" style="margin-bottom: 24px;">
+                        -->
+                        <app-mini-area
+                            [height]="45"
+                            [data]="visitData2"
+                        ></app-mini-area>
+                    </div>
+                    <div
+                        nz-col
+                        [nzSm]="12"
+                        [nzXs]="24"
+                        style="margin-bottom: 24px;"
+                    >
+                        <!--
                             <NumberInfo subTitle="人均搜索次数" total="2.7" status="down" :subTotal="26.2" :gap="8" />
-                            <MiniArea :height="45" :data="visitData2" />
-                        </a-col>
-                    </a-row>
+                        -->
+                        <app-mini-area
+                            [height]="45"
+                            [data]="visitData2"
+                        ></app-mini-area>
+                    </div>
+                </div>
+                <!--
                     <a-table :rowKey="(record) => {return record.index}" size="small" :columns="columns" :dataSource="searchData"
-                        :pagination="{ style: 'margin-bottom: 0px;', pageSize: 5 }" />
-                </a-card>
-            </a-col>
-            <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-                <a-card :loading="loading" class="salesCard" :bordered="false" title="销售额类别占比" :bodyStyle="{ padding: 24 }"
-                    style="margin-top: 24px; min-height: 509px;">
-                    <template slot="extra">
-                        <div class="salesCardExtra">
-                            <span className="iconGroup">
-                                <a-dropdown placement="bottomRight">
-                                    <template slot="overlay">
-                                        <a-menu>
-                                            <a-menu-item>操作一</a-menu-item>
-                                            <a-menu-item>操作二</a-menu-item>
-                                        </a-menu>
-                                    </template>
-                                    <a-icon type="ellipsis" />
-                                </a-dropdown>
-                            </span>
-                            <div class="salesTypeRadio">
-                                <a-radio-group :value="salesType" @change="handleChangeSalesType">
-                                    <a-radio-button value="all">全部渠道</a-radio-button>
-                                    <a-radio-button value="online">线上</a-radio-button>
-                                    <a-radio-button value="offline">门店</a-radio-button>
-                                </a-radio-group>
-                            </div>
+                       :pagination="{ style: 'margin-bottom: 0px;', pageSize: 5 }" />
+                -->
+            </nz-card>
+        </div>
+        <div nz-col [nzXl]="12" [nzLg]="24" [nzMd]="24" [nzSm]="24" [nzXs]="24">
+            <nz-card
+                [nzLoading]="loading"
+                class="salesCard"
+                [nzBordered]="false"
+                nzTitle="销售额类别占比"
+                [nzBodyStyle]="{ padding: 24 }"
+                [nzExtra]="extraTemplateTwo"
+                style="margin-top: 24px; min-height: 509px;"
+            >
+                <ng-template #extraTemplateTwo>
+                    <div class="salesCardExtra">
+                        <span class="iconGroup">
+                            <nz-dropdown nzPlacement="bottomRight">
+                                <span nz-dropdown>
+                                    <i nz-icon type="ellipsis"></i>
+                                </span>
+                                <ul nz-menu>
+                                    <li nz-menu-item>操作一</li>
+                                    <li nz-menu-item>操作二</li>
+                                </ul>
+                            </nz-dropdown>
+                        </span>
+                        <div class="salesTypeRadio">
+                            <nz-radio-group
+                                [(ngModel)]="salesType"
+                                (ngModelChange)="handleChangeSalesType($event)"
+                            >
+                                <label nz-radio-button nzValue="all"
+                                    >全部渠道</label
+                                >
+                                <label nz-radio-button nzValue="online"
+                                    >线上</label
+                                >
+                                <label nz-radio-button nzValue="offline"
+                                    >门店</label
+                                >
+                            </nz-radio-group>
                         </div>
-                    </template>
-                    <h4 style="margin-top: 8px; margin-bottom: 32px;">销售额</h4>
+                    </div>
+                </ng-template>
+                <h4 style="margin-top: 8px; margin-bottom: 32px;">销售额</h4>
+                <!--
                     <Pie :hasLegend="true" subTitle="销售额" :data="salesPieData" :total="yuan(salesPieData.reduce((pre, now) => now.y + pre, 0))"
-                        :valueFormat="value => yuan(value)" :height="248" :lineWidth="4" :colors="colors" />
-                </a-card>
-            </a-col>
-        </a-row>
-    -->
+                    :valueFormat="value => yuan(value)" :height="248" :lineWidth="4" :colors="colors" />
+                -->
+            </nz-card>
+        </div>
+    </div>
 
     <!--
         <a-card :loading="loading" class="offlineCard" :bordered="false" :bodyStyle="{ padding: '0 0 32px 0' }" style="margin-top: 32px;">

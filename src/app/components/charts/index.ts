@@ -1,14 +1,14 @@
 import numeral from 'numeral';
 import { ChartCardComponent } from './chartcard/chart-card.component';
 import { FieldComponent } from './field/field.component';
-// import Bar from "./Bar";
+import { MiniAreaComponent } from './miniarea/mini-area.component';
+import { MiniBarComponent } from './minibar/mini-bar.component';
+import { MiniProgressComponent } from './miniprogress/mini-progress.component';
+import { BarComponent } from './bar/bar.component';
 // import Pie from "./Pie";
 // import MiniPie from "./MiniPie";
 // import Radar from "./Radar";
 // import Gauge from "./Gauge";
-// import MiniArea from "./MiniArea";
-// import MiniBar from "./MiniBar";
-// import MiniProgress from "./MiniProgress";
 // import Field from "./Field";
 // import WaterWave from "./WaterWave";
 // import TagCloud from "./TagCloud";
@@ -29,16 +29,16 @@ const colors = [
 export {
     yuan,
     colors,
-    // Bar,
     // Pie,
     // MiniPie,
     // Gauge,
     // Radar,
-    // MiniBar,
-    // MiniArea,
-    // MiniProgress,
     ChartCardComponent,
-    FieldComponent
+    FieldComponent,
+    MiniAreaComponent,
+    MiniBarComponent,
+    MiniProgressComponent,
+    BarComponent
     // WaterWave,
     // TagCloud,
     // TimelineChart

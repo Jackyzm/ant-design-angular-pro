@@ -12,7 +12,8 @@ class CurrentUser {
 }
 @Component({
     selector: 'app-basic-layout',
-    templateUrl: './basic-layout.component.html'
+    templateUrl: './basic-layout.component.html',
+    providers: [BasicLayoutService]
 })
 export class BasicLayoutComponent implements OnInit {
     constructor(

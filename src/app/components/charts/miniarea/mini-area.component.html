@@ -1,0 +1,9 @@
+<div class="miniChart" [ngStyle]="{ 'height.px': height }">
+    <div class="chartContent">
+        <div
+            echarts
+            [options]="chartOption"
+            [ngStyle]="{ width: '100%', 'height.px': 54 + height }"
+        ></div>
+    </div>
+</div>

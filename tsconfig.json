@@ -16,7 +16,8 @@
             "@app/*": ["app/*"],
             "@components/*": ["app/components/*"],
             "@layouts/*": ["app/layouts/*"],
-            "@utils/*": ["app/utils/*"]
+            "@utils/*": ["app/utils/*"],
+            "echarts": ["node_modules/echarts/dist/echarts.min.js"]
         }
     }
 }

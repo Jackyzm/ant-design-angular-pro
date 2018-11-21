@@ -6,7 +6,7 @@ import { Component, OnInit, Input, TemplateRef } from '@angular/core';
     styleUrls: ['./trend.component.less']
 })
 export class TrendComponent implements OnInit {
-    @Input() colorful = false;
+    @Input() colorful = true;
     @Input() reverseColor = false;
     @Input() flag: string;
     @Input() trendStyle: object;
