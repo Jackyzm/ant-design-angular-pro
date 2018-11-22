@@ -34,7 +34,7 @@ registerLocaleData(zh);
         NoticeIconComponent,
         NoticeListComponent,
         SiderMenuComponent,
-        ThreeMenuComponent
+        ThreeMenuComponent,
     ],
     imports: [
         BrowserModule,

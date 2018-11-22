@@ -1,16 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { yuan } from "@components/charts";
-import numeral from "numeral";
-import { AnalysisService } from "./analysis.service";
-import { getTimeDistance } from "@utils/utils";
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import numeral from 'numeral';
+import { AnalysisService } from './analysis.service';
+import { getTimeDistance } from '@utils/utils';
+import { cloneDeep } from 'lodash';
+import { colors, yuan } from '@components/charts';
 
 @Component({
-    selector: "app-analysis",
+    selector: 'app-analysis',
     templateUrl: './analysis.component.html',
     styleUrls: ['./analysis.component.less'],
     providers: [AnalysisService]
 })
-export class AnalysisComponent implements OnInit {
+export class AnalysisComponent implements OnInit, OnChanges {
     constructor(private analysisService: AnalysisService) {}
 
     topColResponsiveProps = {
@@ -27,10 +28,39 @@ export class AnalysisComponent implements OnInit {
     loading = true;
     rankingListData = [];
     rangePickerValue = getTimeDistance('year');
+    activeIndex = 0;
+    colors = colors;
 
     visitData: Array<object> = [];
     salesData: Array<object> = [];
     visitData2: Array<object> = [];
+    offlineData: Array<object> = [];
+    _searchData: Array<object> = [];
+    data;
+    total = '';
+    tableData = [];
+
+    set salesPieData(data) {
+        this.setSalesPieDataData(data);
+        this.data = data;
+    }
+
+    get salesPieData() {
+        if (!this.data) {
+            return [];
+        }
+        const salesPieData = this.setSalesPieDataData(this.data);
+        return salesPieData;
+    }
+
+    set searchData(searchData) {
+        this._searchData = searchData;
+        this.tableData = searchData;
+    }
+    get searchData() {
+        return this._searchData;
+    }
+
     ngOnInit() {
         this.getChartData();
 
@@ -42,6 +72,23 @@ export class AnalysisComponent implements OnInit {
             });
         }
         this.rankingListData = rankingListData;
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log(changes);
+    }
+
+    setSalesPieDataData(data) {
+        const salesPieData =
+            (this.salesType === 'all'
+                ? data['salesTypeData']
+                : this.salesType === 'online'
+                ? data['salesTypeDataOnline']
+                : data['salesTypeDataOffline']) || [];
+        this.total = yuan(
+            salesPieData.reduce((pre, now: { y }) => now.y + pre, 0)
+        );
+        return salesPieData;
     }
 
     handleRangePickerChange(rangePickerValue) {
@@ -59,10 +106,15 @@ export class AnalysisComponent implements OnInit {
                     visitData: Array<object>;
                     salesData: Array<object>;
                     visitData2: Array<object>;
+                    searchData: Array<object>;
+                    offlineData: Array<object>;
                 }) => {
                     this.visitData = data.visitData;
                     this.salesData = data.salesData;
                     this.visitData2 = data.visitData2;
+                    this.searchData = data.searchData;
+                    this.offlineData = data.offlineData;
+                    this.salesPieData = data;
                     this.loading = false;
                 }
             );
@@ -88,5 +140,28 @@ export class AnalysisComponent implements OnInit {
 
     handleChangeSalesType(val) {
         this.salesType = val;
+    }
+
+    sort(sort: { key: string; value: string }) {
+        if (sort.value) {
+            const data = cloneDeep(this.searchData);
+            if (sort.value === 'ascend') {
+                this.tableData = data.sort((a, b) => a[sort.key] - b[sort.key]);
+            } else {
+                this.tableData = data.sort((a, b) => b[sort.key] - a[sort.key]);
+            }
+        } else {
+            this.tableData = this.searchData.sort(
+                (a: { index }, b: { index }) => a.index - b.index
+            );
+        }
+    }
+
+    handleTabChange({ index }) {
+        this.activeIndex = index;
+    }
+
+    valueFormat(value) {
+        return yuan(value);
     }
 }

@@ -1,0 +1,38 @@
+<div
+    [ngClass]="{ pie: true, hasLegend: !!hasLegend, legendBlock: legendBlock }"
+    [class]="className"
+    [ngStyle]="pieStyle"
+>
+    <div class="chart">
+        <div style="width: 100%; height:248px;"></div>
+        <!--
+            <ve-ring :data="chartData" :height="height+'px'" :colors="colors" :extend="chartExtend" />
+        -->
+        <div *ngIf="subTitle || total" class="total">
+            <h4 *ngIf="subTitle" class="pie-sub-title">{{ subTitle }}</h4>
+            <p *ngIf="total" class="pie-stat">{{ total }}</p>
+        </div>
+    </div>
+
+    <ul *ngIf="hasLegend" class="legend">
+        <li
+            *ngFor="let item of legendData; let i = index"
+            (click)="handleLegendClick(item, i)"
+        >
+            <span
+                class="dot"
+                [ngStyle]="{
+                    'background-color': !item.checked ? '#aaa' : item.color
+                }"
+            ></span>
+            <span class="legendTitle">{{ item.x }}</span>
+            <nz-divider nzType="vertical"></nz-divider>
+            <span class="percent">
+                {{ (isNaN(item.percent) ? 0 : item.percent * 100).toFixed(2) }}%
+            </span>
+            <span class="value">
+                {{ valueFormat ? valueFormat(item.y) : item.y }}
+            </span>
+        </li>
+    </ul>
+</div>

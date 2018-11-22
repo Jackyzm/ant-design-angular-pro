@@ -1,0 +1,28 @@
+<div
+    [class]="'numberInfo ' + (theme ? 'numberInfo' + theme : '')"
+    [ngStyle]="numberInfoStyle"
+>
+    <div *ngIf="title" class="numberInfoTitle">{{ title }}</div>
+    <ng-container *ngIf="isSubTitleString; else: subTitleTemplate">
+        <div *ngIf="subTitle" class="numberInfoSubTitle">{{ subTitle }}</div>
+    </ng-container>
+    <ng-template #subTitleTemplate>
+        <ng-template [ngTemplateOutlet]="subTitle"></ng-template>
+    </ng-template>
+
+    <div class="numberInfoValue" [ngStyle]="{ 'margin-top.px': gap }">
+        <span>
+            <ng-container *ngIf="total; else: totalTemplate">
+                {{ total }}
+            </ng-container>
+            <ng-template #totalTemplate>
+                <ng-template [ngTemplateOutlet]="total"></ng-template>
+            </ng-template>
+            <em *ngIf="suffix" class="suffix">{{ suffix }}</em>
+        </span>
+        <span *ngIf="status || subTotal" class="subTotal">
+            {{ subTotal }}
+            <i nz-icon *ngIf="status" [type]="'caret-' + status"></i>
+        </span>
+    </div>
+</div>

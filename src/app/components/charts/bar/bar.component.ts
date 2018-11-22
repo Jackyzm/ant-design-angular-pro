@@ -3,8 +3,7 @@ import { EChartOption } from 'echarts';
 
 @Component({
     selector: 'app-bar',
-    templateUrl: './bar.component.html',
-    styleUrls: ['./bar.component.less']
+    templateUrl: './bar.component.html'
 })
 export class BarComponent implements OnChanges {
     @Input() data: Array<object> = [{}];

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import { DefaultInterceptor } from '@core/default.interceptor';
 
 @NgModule({
     imports: [
@@ -22,6 +24,13 @@ import { RouterModule } from '@angular/router';
         HttpClientModule,
         RouterModule,
         NgZorroAntdModule
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: DefaultInterceptor,
+            multi: true
+        }
     ]
 })
 export class SharedModule {}

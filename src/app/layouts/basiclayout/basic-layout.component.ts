@@ -77,11 +77,11 @@ export class BasicLayoutComponent implements OnInit {
     }
     handleMenuClick({ key }) {
         if (key === 'triggerError') {
-            this.router.navigate(['/exception/trigger']);
+            this.router.navigateByUrl('/exception/trigger');
             return;
         }
         if (key === 'logout') {
-            this.router.navigate(['/user/login']);
+            this.router.navigateByUrl('/user/login');
         }
     }
     handleNoticeVisibleChange(visible) {

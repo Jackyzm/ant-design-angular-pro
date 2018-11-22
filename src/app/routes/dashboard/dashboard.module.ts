@@ -13,9 +13,11 @@ import {
     MiniAreaComponent,
     MiniBarComponent,
     MiniProgressComponent,
-    BarComponent
+    BarComponent,
+    PieComponent
 } from '@components/charts';
 import { TrendComponent } from '@components/trend/trend.component';
+import { NumberInfoComponent } from '@components/numberinfo/number-info.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import { TrendComponent } from '@components/trend/trend.component';
         MiniAreaComponent,
         MiniBarComponent,
         MiniProgressComponent,
-        BarComponent
+        BarComponent,
+        NumberInfoComponent,
+        PieComponent
     ],
     imports: [DashboardRoutingModule, SharedModule, NgxEchartsModule]
 })

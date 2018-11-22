@@ -5,7 +5,7 @@ import { MiniAreaComponent } from './miniarea/mini-area.component';
 import { MiniBarComponent } from './minibar/mini-bar.component';
 import { MiniProgressComponent } from './miniprogress/mini-progress.component';
 import { BarComponent } from './bar/bar.component';
-// import Pie from "./Pie";
+import { PieComponent } from './pie/pie.component';
 // import MiniPie from "./MiniPie";
 // import Radar from "./Radar";
 // import Gauge from "./Gauge";
@@ -29,7 +29,6 @@ const colors = [
 export {
     yuan,
     colors,
-    // Pie,
     // MiniPie,
     // Gauge,
     // Radar,
@@ -38,7 +37,8 @@ export {
     MiniAreaComponent,
     MiniBarComponent,
     MiniProgressComponent,
-    BarComponent
+    BarComponent,
+    PieComponent
     // WaterWave,
     // TagCloud,
     // TimelineChart
