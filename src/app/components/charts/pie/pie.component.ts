@@ -1,18 +1,13 @@
-import {
-    Component,
-    OnInit,
-    Input,
-    OnChanges,
-    SimpleChanges
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { cloneDeep } from 'lodash';
+import { EChartOption } from 'echarts';
 
 @Component({
     selector: 'app-pie',
     templateUrl: './pie.component.html',
     styleUrls: ['./pie.component.less']
 })
-export class PieComponent implements OnInit, OnChanges {
+export class PieComponent implements OnChanges {
     constructor() {}
 
     @Input() className = '';
@@ -26,14 +21,16 @@ export class PieComponent implements OnInit, OnChanges {
     @Input() height = 0;
     @Input() valueFormat;
 
-    chartData: any = {};
-    legendData = [];
+    private _data = [];
+    private legendData = [];
 
-    ngOnInit() {}
+    chartOption: EChartOption = {};
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.data) {
             this.setLegendData();
+            this.setOption(this.data);
+            this._data = cloneDeep(this.data);
         }
     }
 
@@ -46,21 +43,48 @@ export class PieComponent implements OnInit, OnChanges {
         });
         if (checkedItem > 2 || item.checked === false) {
             if (!this.legendData[index].checked) {
-                // this.chartData.rows[index].y = this.data[index].y;
+                this._data[index].y = this.data[index].y;
             } else {
-                // this.chartData.rows[index].y = 0;
+                this._data[index].y = 0;
             }
+            this.setOption(this._data);
             this.legendData[index].checked = !this.legendData[index].checked;
         } else {
             return;
         }
     }
-    // setChartData() {
-    //     this.chartData = {
-    //         columns: ['x', 'y'],
-    //         rows: cloneDeep(this.data)
-    //     };
-    // }
+
+    setOption(data) {
+        this.chartOption = {
+            grid: {},
+            legend: {
+                show: false
+            },
+            tooltip: {
+                formatter: function(params, ticket, callback) {
+                    return `${params.marker} ${params.name}: ${params.value}`;
+                }
+            },
+            series: {
+                type: 'pie',
+                color: this.colors,
+                label: {
+                    show: false
+                },
+                radius: ['76%', '100%'],
+                hoverAnimation: false,
+                center: ['50%', '50%'],
+                itemStyle: {
+                    borderColor: '#fff',
+                    borderWidth: 4
+                },
+                data: data.map((item: { x; y }) => {
+                    return { name: item.x, value: item.y };
+                })
+            }
+        };
+    }
+
     setLegendData() {
         if (this.data.length === 0) {
             return [];

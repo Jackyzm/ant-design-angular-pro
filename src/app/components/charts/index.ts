@@ -6,13 +6,14 @@ import { MiniBarComponent } from './minibar/mini-bar.component';
 import { MiniProgressComponent } from './miniprogress/mini-progress.component';
 import { BarComponent } from './bar/bar.component';
 import { PieComponent } from './pie/pie.component';
-// import MiniPie from "./MiniPie";
+import { MiniPieComponent } from './minipie/mini-pie.component';
+import { TimelineChartComponent } from './timelinechart/timeline-chart.component';
+
 // import Radar from "./Radar";
 // import Gauge from "./Gauge";
 // import Field from "./Field";
 // import WaterWave from "./WaterWave";
 // import TagCloud from "./TagCloud";
-// import TimelineChart from "./TimelineChart";
 
 const yuan = val => `¥ ${numeral(val).format('0,0')}`;
 const colors = [
@@ -29,7 +30,6 @@ const colors = [
 export {
     yuan,
     colors,
-    // MiniPie,
     // Gauge,
     // Radar,
     ChartCardComponent,
@@ -38,8 +38,9 @@ export {
     MiniBarComponent,
     MiniProgressComponent,
     BarComponent,
-    PieComponent
+    PieComponent,
+    MiniPieComponent,
+    TimelineChartComponent
     // WaterWave,
     // TagCloud,
-    // TimelineChart
 };

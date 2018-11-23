@@ -1,8 +1,10 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import numeral from 'numeral';
-import { AnalysisService } from './analysis.service';
+import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
+import numeral from "numeral";
+import { format } from "date-fns";
+import { cloneDeep } from "lodash";
+
+import { AnalysisService } from "./analysis.service";
 import { getTimeDistance } from '@utils/utils';
-import { cloneDeep } from 'lodash';
 import { colors, yuan } from '@components/charts';
 
 @Component({
@@ -36,9 +38,23 @@ export class AnalysisComponent implements OnInit, OnChanges {
     visitData2: Array<object> = [];
     offlineData: Array<object> = [];
     _searchData: Array<object> = [];
+    _offlineChartData: Array<object> = [];
+
     data;
     total = '';
     tableData = [];
+
+    set offlineChartData(offlineChartData) {
+        this._offlineChartData = offlineChartData;
+    }
+
+    get offlineChartData() {
+        this._offlineChartData.map((item: any) => {
+            item.x = format(item.x, 'HH:mm');
+            return item;
+        });
+        return this._offlineChartData;
+    }
 
     set salesPieData(data) {
         this.setSalesPieDataData(data);
@@ -108,12 +124,14 @@ export class AnalysisComponent implements OnInit, OnChanges {
                     visitData2: Array<object>;
                     searchData: Array<object>;
                     offlineData: Array<object>;
+                    offlineChartData: Array<object>;
                 }) => {
                     this.visitData = data.visitData;
                     this.salesData = data.salesData;
                     this.visitData2 = data.visitData2;
                     this.searchData = data.searchData;
                     this.offlineData = data.offlineData;
+                    this.offlineChartData = data.offlineChartData;
                     this.salesPieData = data;
                     this.loading = false;
                 }

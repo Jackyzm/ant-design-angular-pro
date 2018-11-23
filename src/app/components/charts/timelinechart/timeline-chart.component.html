@@ -1,0 +1,13 @@
+<div class="timelineChart" [ngStyle]="{ 'height.px': height + 30 }">
+    <div>
+        <h4 *ngIf="title">{{ title }}</h4>
+        <div
+            echarts
+            [options]="chartOption"
+            [ngStyle]="{ width: '100%', 'height.px': height }"
+        ></div>
+        <!--
+            <ve-line :data="chartData" :colors="colors" :settings="chartSettings" :extend="chartExtend" :data-zoom="dataZoom" />
+        -->
+    </div>
+</div>

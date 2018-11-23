@@ -4,7 +4,11 @@
     [ngStyle]="pieStyle"
 >
     <div class="chart">
-        <div style="width: 100%; height:248px;"></div>
+        <div
+            echarts
+            [options]="chartOption"
+            [ngStyle]="{ width: '100%', 'height.px': height }"
+        ></div>
         <!--
             <ve-ring :data="chartData" :height="height+'px'" :colors="colors" :extend="chartExtend" />
         -->

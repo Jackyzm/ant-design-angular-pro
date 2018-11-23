@@ -14,7 +14,9 @@ import {
     MiniBarComponent,
     MiniProgressComponent,
     BarComponent,
-    PieComponent
+    PieComponent,
+    MiniPieComponent,
+    TimelineChartComponent
 } from '@components/charts';
 import { TrendComponent } from '@components/trend/trend.component';
 import { NumberInfoComponent } from '@components/numberinfo/number-info.component';
@@ -31,7 +33,9 @@ import { NumberInfoComponent } from '@components/numberinfo/number-info.componen
         MiniProgressComponent,
         BarComponent,
         NumberInfoComponent,
-        PieComponent
+        PieComponent,
+        MiniPieComponent,
+        TimelineChartComponent
     ],
     imports: [DashboardRoutingModule, SharedModule, NgxEchartsModule]
 })

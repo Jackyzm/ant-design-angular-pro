@@ -1,0 +1,13 @@
+<div [class]="'pie' + className" [style]="pieStyle">
+    <div class="chart">
+        <div
+            echarts
+            [options]="chartOption"
+            [ngStyle]="{ width: '100%', 'height.px': height }"
+        ></div>
+        <div *ngIf="subTitle || total" class="total">
+            <h4 *ngIf="subTitle" class="pie-sub-title">{{ subTitle }}</h4>
+            <p *ngIf="total" class="pie-stat">{{ total }}</p>
+        </div>
+    </div>
+</div>
