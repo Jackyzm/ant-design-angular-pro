@@ -78,6 +78,11 @@ export class AnalysisComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        // 移除加载效果
+        setTimeout(() => {
+            document.getElementById('preloader').remove();
+        }, 1000);
+
         this.getChartData();
 
         const rankingListData = [];
