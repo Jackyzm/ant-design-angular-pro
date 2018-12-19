@@ -1,9 +1,9 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
-import numeral from "numeral";
-import { format } from "date-fns";
-import { cloneDeep } from "lodash";
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import numeral from 'numeral';
+import { format } from 'date-fns';
+import { cloneDeep } from 'lodash';
 
-import { AnalysisService } from "./analysis.service";
+import { AnalysisService } from './analysis.service';
 import { getTimeDistance } from '@utils/utils';
 import { colors, yuan } from '@components/charts';
 

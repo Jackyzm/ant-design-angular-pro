@@ -9,9 +9,6 @@
             [options]="chartOption"
             [ngStyle]="{ width: '100%', 'height.px': height }"
         ></div>
-        <!--
-            <ve-ring :data="chartData" :height="height+'px'" :colors="colors" :extend="chartExtend" />
-        -->
         <div *ngIf="subTitle || total" class="total">
             <h4 *ngIf="subTitle" class="pie-sub-title">{{ subTitle }}</h4>
             <p *ngIf="total" class="pie-stat">{{ total }}</p>
